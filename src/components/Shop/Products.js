@@ -20,6 +20,7 @@ const Products = (props) => {
       <h2>Buy your favorite products</h2>
       <ul>{
         Dummy.map(item=><ProductItem
+           key={item.name}
           title={item.name}
           price={item.price}
           description={item.description}
