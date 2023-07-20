@@ -2,7 +2,7 @@ import classes from './Notification.module.css';
 import {useSelector} from 'react-redux'
 
 const Notification = (props) => {
-  const notification = useSelector(state=>state.ui)
+  const notification = useSelector(state=>state.ui.notification)
   let specialClasses = '';
 
   if (notification.status === 'error') {

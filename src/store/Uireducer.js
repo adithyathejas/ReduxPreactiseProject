@@ -1,19 +1,24 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState =  {
-    status:'',
+    cartState:false,
+    notification:{status:'',
     title:'',
     message: ''
 }
+}
 
 const Uireducer = createSlice({
-    name:'notification',
+    name:'ui',
     initialState:initialState,
     reducers:{
+        cartHandle(state){
+            state.cartState = !state.cartState
+        },
         notificationHandler(state,action){
-            state.status = action.payload.status
-            state.title = action.payload.title
-            state.message = action.payload.message
+            state.notification.status = action.payload.status
+            state.notification.title = action.payload.title
+            state.notification.message = action.payload.message
         }
 
     }
