@@ -24,8 +24,8 @@ export const syncCartData = ()=>{
         try{
                 dispatch(uiactions.notificationHandler({status:'sending',title:'sending...',message:'sending request to server'}));
                 const res= await axios.get('https://reduxpractise-4856c-default-rtdb.firebaseio.com/cart.json')
-                const resdata = res.data
-                console.log('hi',res)
+                const resdata = {...res.data,items:res.data.items || [] ,}
+                console.log('hi',resdata)
                 dispatch(cartActions.replaceCart(resdata))
                 if(res.status==200){
                     dispatch(uiactions.notificationHandler({status:'success',title:'sent',message:'updated sucessfully'}))
@@ -33,5 +33,6 @@ export const syncCartData = ()=>{
         }catch(e){
             dispatch(uiactions.notificationHandler({status:'error',title:'error',message:e.message}))
         }
+        setTimeout(()=>{dispatch(uiactions.notificationHandler({status:null,message:null,title:null}))},1000)
     } 
 }

@@ -14,17 +14,19 @@ function App() {
   const cart = useSelector(state=>state.cart) 
   const notivisible = useSelector(state=>state.ui.notification.status)
   const Dispatch = useDispatch()
+  useEffect(()=>{ Dispatch(syncCartData())},[])
   useEffect(()=>{
     const networkCall = async ()=>{
       if(isInitial==true){
-          Dispatch(syncCartData())
+         
           isInitial=false
          
       }else{
       
       
-      
-      Dispatch(sendCartData(cart))
+      if(cart.changed===true){
+      Dispatch(sendCartData({items:cart.items,totalQuantity:cart.totalQuantity,totalPrice:cart.totalPrice}))
+      }
     
   }
 }

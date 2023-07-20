@@ -5,7 +5,8 @@ const initialState ={
     
     items:[],
     totalQuantity:0,
-    totalPrice:0
+    totalPrice:0,
+    changed:false
 }
 
 const cartReducer = createSlice({
@@ -23,6 +24,7 @@ const cartReducer = createSlice({
                 existingItem.quantity++
                 existingItem.total=existingItem.total+newItem.price
             }
+            state.changed = true
         },
         removeItemHandler(state,action){
             const name = action.payload
@@ -33,7 +35,7 @@ const cartReducer = createSlice({
             }else{
                 existingItem.quantity--
                 existingItem.total=existingItem.total-existingItem.price
-                
+                state.changed = true
             }
         },replaceCart(state,action){
             state.items = action.payload.items
